@@ -1,4 +1,57 @@
+describe('Login page testing', function() {
+  it('Test the login function and ', function() {
+    cy.visit('http://localhost:3000');
+    cy.get(':nth-child(1) > .MuiButton-label').click();
+    cy.get('#email').type('text');
+    cy.get('#password').type('passwordtext');
+    cy.get('.MuiButton-root').click();
+    cy.get('.makeStyles-paper-10 > :nth-child(3)').should('contain', 'email is required');
 
+})
+})
+ describe('Login as Admin', function() {
+    it('Test the login function and admin functions', function() {
+      cy.visit('http://localhost:3000')
+      cy.get(':nth-child(2) > .MuiButton-label').click();
+      cy.get('#email').type('admintest@gmail.com');
+      cy.get('#password').type('1234');
+      cy.get('.MuiButton-root').click();
+      cy.get('[tabindex="-1"] > .MuiTab-wrapper').click();
+      cy.get('[tabindex="-1"] > .MuiTab-wrapper').click();
+      cy.get(':nth-child(1) > .MuiButton-label').click()
+      cy.get('.makeStyles-form-63').type('string');
+  
+      cy.get('.makeStyles-form-63 > .MuiButtonBase-root > .MuiButton-label').click()
+      cy.get('.App-header').contains('Fund has been created successfully')
+      cy.get('.block').click()
+      cy.get(':nth-child(5) > .MuiButton-label').click()
+      cy.get('input').type('123455')
+      cy.get('#forms > .MuiButtonBase-root > .MuiButton-label').click()
+      cy.get('.makeStyles-paper-71 > :nth-child(2)').contains('Fund Retrieval NOT successfull!')
+      cy.reload()
+      cy.get(':nth-child(5) > .MuiButton-label').click()
+      cy.get('input').type('123456')
+      cy.get('#forms > .MuiButtonBase-root > .MuiButton-label').click()
+      cy.reload()
+      cy.get('[tabindex="-1"]').click()
+      cy.get(':nth-child(1) > .MuiButton-label').click()
+      cy.get('.makeStyles-root-29 > .MuiPaper-root').click()
+      cy.get('#FirstName').type('Strings')
+      cy.get('#LastName').type('Smiths')
+      cy.get('#BankName').type('CommonWealth')
+      cy.get('#Address').type('Burwood')
+      cy.get('#Email').type('testing@test.com')
+    
+      cy.get('#forms > .MuiButtonBase-root > .MuiButton-label').click()
+      cy.get('p').should('contain','User NOT saved successfully!')
+      cy.reload()
+      cy.get('[tabindex="-1"] > .MuiTab-wrapper').click()
+      cy.get(':nth-child(5) > .MuiButton-label').click()
+      cy.get('#Email').type('usertest@gmail.com')
+      cy.get('#forms > .MuiButtonBase-root > .MuiButton-label').click()
+
+    })
+  })
   describe('Login as User', function() {
     it('Test the login function and user functions', function() {
    
@@ -29,7 +82,7 @@
       cy.get('tr > :nth-child(1) > div').should('be.visible')
       cy.get('.MuiTabs-flexContainer > :nth-child(2)').click()
       cy.get('#Description').type('Description String')
-      
+
     })
   })
 
